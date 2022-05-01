@@ -11,17 +11,18 @@ df.head()
 # Continuous feaures. show how different features are related to one another
 #display how features are interconnected to each other
 
-plt.figure(figsize=(12,8),dpi=40)
+plt.figure(figsize=(12,8),dpi=40) # dpi makes words clear
 sns.scatterplot(x='salary',y='sales',data=df,
                 hue='level of education',   #
                 palette='Dark2',
-                alpha=0.8,s=200,
+                alpha=0.8, # transparency
+                s=200, #size
                 linewidth=0,
                 style='level of education');#size='work experience'
 plt.show()
 
 ######### --------- Distributions Plots ---------------- #########
-# 3 Distributions Type plot --> 
+# 3 Distributions plot Types  --> 
 #Continios feature to visualize its Deviation or Mean in BINS
         #rugplot , displot (histogram),  kdeplot
 
@@ -36,22 +37,34 @@ sns.displot(data=df,x='salary',
             kde=True,
             color='red',
             edgecolor='black',
-            lw=4,ls='--'
-            )
-sns.histplot(data=df,x='salary',bins=10)
-sns.kdeplot(data=df,x='salary',bw_adjust=0.5,shade=True,color='red')
+            lw=4,ls='--'  )
+sns.histplot(data=df,x='salary',bins=10, kde=True)
+sns.kdeplot(data=df,x='salary',shade=True,color='red',bw_adjust=0.5)# adjust bandwidth, how smooth kde curve
 plt.show()
 
+######### --------- Group by aggregation metric visualization ---------------- #########
+#Count plot ot Bar plot
+sns.barplot(x='level of education',   ## shows UP  tics on top bars
+            y='salary',data=df,
+            estimator=np.mean,
+            ci='sd', # standard deviation for above tick 
+            hue='division')
 
+sns.countplot(x='level of education', # shows the Value_count  for each Category of per column data
+              data=df,
+              hue='training level',
+              palette='Set1')
 
-
-
-
-
-
-
-
-
+######### --------- Distribution per category ---------------- #########
+# Boxplt , Violinplot , Swarmplot, Boxenplot
+#Boxplot (Wisker plot) .. Distribution of Continiuos data. shows based on Quartiles 25%,50% & 75%
+sns.boxplot(x='math score',y='parental level of education',data=df,orient='h') #orient='h' makes horizontal
+#Violinplot ... Add 2 sided KDS plot makes Violin + Boxplot in center
+sns.violinplot(x='parental level of education',y='math score',data=df,hue='gender',split=True) #setting split to True will draw half of a violin for each level
+#Swarmplot .. shows distribution of all data points per category
+sns.swarmplot(x='race/ethnicity',y='math score',data=df,hue='gender')
+### boxenplot (letter-value plot)
+sns.boxenplot(x='race/ethnicity',y='math score',data=df,hue='gender')
 #plt.savefig('example_scatter.jpg')
 
 
