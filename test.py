@@ -3,16 +3,28 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-sns.set()
-df = pd.read_csv(r'C:\Users\Diya\Downloads\ML by JosePortilla\05-Seaborn\dm_office_sales.csv')
-print(df.head())
+df = pd.read_csv("Visualization\dm_office_sales.csv")
+df.head()
 
-plt.figure(figsize=(12,8),dpi=40)
-#plt.hist(df['salary'])
-#plt.hist(df['sales'])
-#sns.histplot(df['sales'])
-sns.kdeplot(df['sales'],shade=True)
+
+
+
+plt.figure(figsize=(10,4),dpi=200)
+# Paired would be a good choice if there was a distinct jump from 0 and 1 to 2 and 3
+#sns.countplot(x='level of education',data=df,hue='training level',palette='Paired')
+sns.barplot(x='level of education',data=df,y='salary',hue='training level',palette='Paired', estimator=np.mean)
+
+sns.countplot(x='level of education',data=df,hue='training level',palette='Set1')
+
+
+
 plt.show()
+
+
+
+
+
+
 
 
 
