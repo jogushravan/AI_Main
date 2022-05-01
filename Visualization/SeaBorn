@@ -67,12 +67,25 @@ sns.swarmplot(x='race/ethnicity',y='math score',data=df,hue='gender')
 sns.boxenplot(x='race/ethnicity',y='math score',data=df,hue='gender')
 #plt.savefig('example_scatter.jpg')
 
+######### --------- Comparison Plots with pairplot() and jointplot() ---------------- #########
+# jointplot--> Map Histogram to each feature of a Scatterplot to clarify the distribution. Scatterplt can be made Hex or 2d KDE plot
+sns.jointplot(x='math score',y='reading score',data=df,kind='hex') #kind='kde' makes 2d KDE or Hex plt
+# pairplot-->CPU & RAM intensive(Filter before using). Compare all numarical column.Creates Histograms & Scatterplot for all combination columns
+sns.pairplot(df,hue='gender',palette='viridis') #corner=True-> romoves duplicate graphs(compare itself),diag_kind='hist' makes Histograms
 
-
-
-
-
-
+######### --------- Grids .catplot() & Pairgrid() & FacetGrid()---------------- #########
+# catplot()--> makes rows & column by 'row' & 'Col' attrubutes.Rows & columns are made denepends of number of category
+sns.catplot(x='gender',y='math score',data=df,kind='box',row='lunch',col='test preparation course')  #chnage kind to make any type of plot
+#Pairgrid() --> Add Upper, Diag, Lower diffrent types of plots
+g = sns.PairGrid(df, hue="gender", palette="viridis",hue_kws={"marker": ["o", "+"]})
+g = g.map_upper(sns.scatterplot, linewidths=1, edgecolor="w", s=40)
+g = g.map_diag(sns.distplot)
+g = g.map_lower(sns.kdeplot)
+g = g.add_legend();
+# FacetGrid
+g = sns.FacetGrid(data=df,col='gender',row='lunch')
+g = g.map(plt.scatter, "math score", "reading score", edgecolor="w")
+g.add_legend()
 
 
 
