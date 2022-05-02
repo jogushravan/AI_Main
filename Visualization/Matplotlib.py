@@ -2,13 +2,18 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+a = np.arange(0,10)
+b = 2*a*np.sin(a)
+plt.plot ( a, b, 'ro--') #--> Basic plot, Can set Line style 'ro--'
+#plt.fill_between(x,y,color='blue', alpha=0.2) --> fill teh gradient color
 #fig, axes = plt.subplots(nrows=4, ncols=4)# plt.subplots(3,4) creates 3 rows & 4 columns grid
+#fig, axes = plt.subplots() # returns Figure & Axes
 
 fig = plt.figure()
 names = ['A', 'B', 'C']
 values = [19, 50, 29]
 values_2 = [48, 19, 41]
-
+plt.axes(0,0,1,1)
 ax = fig.add_subplot(121)#1 row 2 column. subplot on position 1
 ax2 = fig.add_subplot(122)#1 row 2 column. subplot on position 2
                         #add_subplot(232) means 2 rows 3 columns. subplot on position 2
@@ -48,8 +53,7 @@ plt.scatter(x=values, y=values_2, color="darkslategrey", edgecolors="white", lin
 
 #3D Plots. o import the Axes3D module from mpl_tookits.mplot3d.
 # for 3d plot add X, Y and Z values
-import pandas as pd
-from matplotlib import pyplot as plt
+
 from mpl_toolkits.mplot3d import Axes3D
 file = pd.read_csv("vgsales.csv")
 fig = plt.figure()
@@ -57,7 +61,7 @@ ax = fig.add_subplot(111, projection='3d')
 x = file['NA_Sales']
 y = file['EU_Sales']
 z = file['Other_Sales']
-ax.scatter(x, y, z, c='r')
+ax.scatter(x, y, z, c='r', s=20)
 plt.xticks(rotation=60)
 plt.show()
 
