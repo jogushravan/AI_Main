@@ -1,62 +1,21 @@
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
-from mpl_toolkits.mplot3d import Axes3D
 
-df = pd.read_csv("Visualization\dm_office_sales.csv")
-df.head()
+x = np.arange(0, 30, 3)
+print("X points are: \n", x)
+y = x**2
+print("Y points are: \n", y)
+plt.scatter(x, y)
+plt.xlabel("X-values")
+plt.ylabel("Y-values")
+plt.plot(x, y)
+p = np.polyfit(x, y, 2)  # Last argument is degree of polynomial
 
+print("Coeeficient values:\n", p)
 
-file = pd.read_csv("vgsales.csv")
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-x = file['NA_Sales']
-y = file['EU_Sales']
-z = file['Other_Sales']
-ax.scatter(x, y, z, c='r', s=20)
-plt.xticks(rotation=60)
-plt.show()
-
-
-
-plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+pred = np.poly1d(p)
+print(pred)
+x_test = 15
+print("\nGiven x_test value is: ", x_test)
+y_pred = pred(x_test)
+print("\nPredicted value of y_pred for given x_test is: ", y_pred)

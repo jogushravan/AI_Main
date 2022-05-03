@@ -65,7 +65,7 @@ sns.boxenplot(x='race/ethnicity',y='math score',data=df,hue='gender')
 # jointplot--> Map Histogram to each feature of a Scatterplot to clarify the distribution. Scatterplt can be made Hex or 2d KDE plot
 sns.jointplot(x='math score',y='reading score',data=df,kind='hex') #kind='kde' makes 2d KDE or Hex plt
 # pairplot-->CPU & RAM intensive(Filter before using). Compare all numarical column.Creates Histograms & Scatterplot for all combination columns
-sns.pairplot(df,hue='gender',palette='viridis') #corner=True-> romoves duplicate graphs(compare itself),diag_kind='hist' makes Histograms
+sns.pairplot(df,hue='gender',palette='viridis') #corner=True-> removes duplicate graphs(compare itself),diag_kind='hist' makes Histograms
 
 ######### --------- Grids --># Catplot() & Pairgrid() & FacetGrid()---------------- #########
 # catplot()--> makes rows & column by 'row' & 'Col' attrubutes.Rows & columns are made denepends of number of category
@@ -87,7 +87,8 @@ sns.heatmap(rates,linewidth=0.5,annot=True,cmap='viridis',center=40)
 #Clustermap . Cluster togethere rows and column .. dundgram
 sns.clustermap(rates)#,col_cluster=False,figsize=(12,8),cbar_pos=(-0.1, .2, .03, .4))
 
-
+######### ---------  Linear regression model plot---------------- #########
+sns.lmplot(x,y)
 
 
 
