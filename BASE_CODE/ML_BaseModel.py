@@ -43,7 +43,7 @@ models.append(('SVM',  SVC(kernel='linear', random_state=0)))
 # evaluate each model in turn
 results = []
 names = []
-scoring = 'accuracy'
+
 for name, model in models:
 
     features = []
@@ -60,12 +60,14 @@ for name, model in models:
 
     kfold = KFold(n_splits=10, random_state=7, shuffle=True)
 
-    cv_results = cross_val_score(Pipeline_model, X, Y, cv=kfold, scoring=scoring)
+    cv_results = cross_val_score(Pipeline_model, X, Y, cv=kfold, scoring='accuracy')
 
     results.append(cv_results)
     names.append(name)
     msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
     print(msg)
+
+
 # boxplot algorithm comparison
 fig = pyplot.figure()
 fig.suptitle('Algorithm Comparison')
@@ -74,12 +76,12 @@ pyplot.boxplot(results)
 ax.set_xticklabels(names)
 pyplot.show()
 
-#__________________________________________________
-##Make predictions on validation dataset
-X_train, X_validation, y_train, y_validation = train_test_split(X, Y, test_size=0.2, random_state=42)
-model = LogisticRegression()
-model.fit(X_train, y_train)
-predictions = model.predict(X_validation)
-print("Accuracy:", accuracy_score(y_validation, predictions))
-print(confusion_matrix(y_validation, predictions))
-print(classification_report(y_validation, predictions))
+# #__________________________________________________
+# ##Make predictions on validation dataset
+# X_train, X_validation, y_train, y_validation = train_test_split(X, Y, test_size=0.2, random_state=42)
+# model = LogisticRegression()
+# model.fit(X_train, y_train)
+# predictions = model.predict(X_validation)
+# print("Accuracy:", accuracy_score(y_validation, predictions))
+# print(confusion_matrix(y_validation, predictions))
+# print(classification_report(y_validation, predictions))
