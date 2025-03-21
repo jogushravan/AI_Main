@@ -1,9 +1,9 @@
 ## In Deep Learning:
-Weights are the learnable parameters of the model.
+**Weights** are the** learnable parameters** of the model.
 
-Gradients are the partial derivatives of the loss with respect to each weight.
+**Gradients** are the **partial derivatives of the loss with respect to each weight**.
 
-We use gradients to update weights via backpropagation.
+**Use gradients to update weights via backpropagation.**
 
 ![image](https://github.com/user-attachments/assets/71071673-8d69-4cec-910b-cbe1a44ba94e)
 
